@@ -1,16 +1,10 @@
 <template>
   <main class="main">
     <ul class="todo-list">
-      <!-- <li :class="{completed: todo.completed}" v-for="todo in tasks" :key="todo.id">
-        <strong>{{ todo.title }} </strong>
-        <p>Deadline: {{ todo.deadline }}</p>
-        <div class="view">
-          <input type="checkbox" name="" id="" class="toggle">
-          <label for=""> {{ todo.title }}</label>
-          <button class="destroy"></button>
-        </div>
-      </li> -->
-      <TodoItem v-for="todo in tasks" :key="todo.id" :todo="todo"/>
+      <TodoItem v-for="todo in tasks" :key="todo.id" :todo="todo" 
+      @delete-todo="emit('delete-todo', todo)"
+      @complete-todo="updateTodo"
+      />
     </ul>
   </main>
 </template>
@@ -23,6 +17,23 @@ import type { Todo } from '@/@types';
 const props = defineProps<{
   tasks: Todo[]
 }>();
+
+const emit = defineEmits<{
+  (e: 'delete-todo', todo: Todo): void
+  (e: 'complete-todo', todo: Todo, completeVal: boolean): void
+  (e: "edit-todo", todo: Todo, value: string): void
+
+}>()
+
+function updateTodo(todo: Todo, completedVal: boolean) {
+  emit('complete-todo', todo, completedVal)
+}
+
+function  editTodo(todo: Todo, value: string) {
+  emit("edit-todo", todo, value ) //Emettre un event
+
+}
+
 
 
 </script>
