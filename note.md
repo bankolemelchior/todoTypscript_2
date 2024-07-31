@@ -11,3 +11,13 @@ null
  */
 
  ctr + ; => pour ajouter dynamiquement les propriétés d'un type objet.
+
+
+
+## Modificateurs d'Accès (Access Modifiers)
+TypeScript introduit les modificateurs d'accès public, private, et protected qui n'existent pas nativement en JavaScript. Ils permettent de contrôler la visibilité des membres de la classe.
+TypeScript offre trois modificateurs d'accès :
+
+public : accessible de n'importe où.
+private : accessible uniquement dans la classe où il est défini.
+protected : accessible dans la classe où il est défini et dans les classes dérivées.
